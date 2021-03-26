@@ -1,3 +1,6 @@
+require "colorize"
+require "byebug"
+
 class Piece
     attr_reader :color, :board, :pos
 
@@ -9,11 +12,17 @@ class Piece
     end
 
     def to_s
-        
+        if self.is_a?(NullPiece)
+            "_"
+        elsif @color == :black
+            symbol.to_s.blue
+        elsif @color == :white
+            symbol.to_s.yellow
+        end
     end
 
     def empty?
-        # self.is_a?(NullPiece)
+        self.is_a?(NullPiece)
     end
 
     def valid_moves
