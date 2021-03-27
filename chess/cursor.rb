@@ -89,13 +89,6 @@ class Cursor
     end
   end
 
-#   Fill in the #handle_key(key) method. Use a case statement that switches on the value of key. Depending on the key, #handle_key(key) will 
-# a) return the @cursor_pos (in case of :return or :space), 
-# b) call #update_pos with the appropriate movement difference from MOVES and return nil (in case of :left, :right, :up, and :down), or 
-# c) exit from the terminal process (in case of :ctrl_c). Later we will use our Player and Game classes to handle the movement of pieces.
-
-# NB: To exit a terminal process, use the Process.exit method. Pass it the status code 0 as an argument. You can read more about exit here.
-
   def update_pos(diff)
     dx, dy = diff
     cur_x, cur_y = @cursor_pos

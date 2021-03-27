@@ -3,7 +3,7 @@ require_relative "piece"
 class Pawn < Piece
 
     def symbol
-        :P
+        "\u2659"
     end
 
     def moves

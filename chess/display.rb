@@ -3,6 +3,7 @@ require_relative "cursor"
 require_relative "board"
 
 class Display
+    attr_reader :board, :cursor
 
     def initialize(board)
         @board = board
@@ -10,7 +11,7 @@ class Display
     end
 
     def render
-        puts "  " + (0..7).to_a.join(" ")
+        puts "\n  " + (0..7).to_a.join(" ")
         @board.rows.each.with_index do |row, row_i|
             output = row.map.with_index do |piece, col_i| 
                 if @cursor.cursor_pos == [row_i, col_i]
@@ -29,20 +30,13 @@ class Display
 
         nil
     end
-
-    # # method to test display rendering and getting cursor input
-    # def looper
-    #     while true
-    #         render
-    #         @cursor.get_input
-    #     end
-    # end
 end
 
 if __FILE__ == $PROGRAM_NAME
     b = Board.new
     d = Display.new(b)
     # d.looper
+    d.render
     b.move_piece(:white,[6,5],[5,5])
     d.render
     b.move_piece(:black,[1,4],[2,4])
@@ -51,6 +45,8 @@ if __FILE__ == $PROGRAM_NAME
     d.render
     b.move_piece(:black,[0,3],[4,7])
     d.render
+    # b.move_piece(:white,[6,5],[5,5])
+    # d.render
 
     puts b.in_check?(:white) # true
     puts b.in_check?(:black) # false
